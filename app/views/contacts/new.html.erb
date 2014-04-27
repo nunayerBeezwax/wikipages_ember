@@ -9,12 +9,18 @@
   </ul>
 <% end %>
 
-<form action="/contacts" method="post">
-	<label for="contact_name">Name</label>
-	<input id="contact_name" name="name" type="text" value="<%= @contact.name %>">
-	<label for="contact_phone">Phone</label>
-	<input id="contact_phone" name="phone" type="text" value="<%= @contact.phone %>">
-	<label for="contact_email">Email</label>
-	<input id="contact_email" name="email" type="text" value="<%= @contact.email %>">
-	<button>Create Contact</button>
-</form>
+<%= form_for(@contact) do |f|  %>
+	<div class="form-group">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+	<div class="form-group">
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
+	<div class="form-group">
+		<%= f.label :phone %>
+		<%= f.text_field :phone %>
+	</div>
+	<%= f.submit(class: "btn btn-primary") %>
+	<% end %>

@@ -1,0 +1,14 @@
+
+#editor {
+	position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 50%;
+        left: 0;
+	/*padding: 10px 20px;*/
+	font-size: .8em;
+	height: 150px;
+	width: 700px;
+	border: 1px solid black;
+	margin-bottom: 15px;
+}

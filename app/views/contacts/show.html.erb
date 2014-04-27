@@ -1,11 +1,13 @@
 <h1><%= @contact.name %></h1>
 
+<a href="/contacts/<%= @contact.id %>/phones/new">Add phone</a>
+
 <p>Phone: <%= @contact.phone %></p>
 <p>Email: <%= @contact.email %></p>
 
-<p><a href="/contacts/<%= contact.id %>/edit">Edit</a></p>
-<p><a href="/contacts/<%= contact.id %>"
-			data-confirm="You sure?"
-			data-method="delete"
-			rel="nofollow">Delete</a></p>
+<p><%= link_to "Edit, edit_contact_path, class: "btn btn-default %></p>
+<p><%= link_to "Delete", contact_path(@contact),
+												 confirm: "You sure?",
+												 method: "delete", 
+												 class: "btn btn-danger" %></p>
 <p><a href="/contacts">Return to contact listing</a></p>

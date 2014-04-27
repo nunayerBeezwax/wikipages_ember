@@ -2,50 +2,62 @@ class ContactsController < ApplicationController
 
 	def index
 		@contacts = Contact.all
-		render('contacts/index.html.erb')
+		
+		respond_to do |format|
+      format.html
+      format.json { render json: @contacts }
+    end
 	end
 
 	def show
-		@contact = Contact.new
-		render('contacts/show.html.erb')
+		@contact = Contact.find(params[:id])
+
+		respond_to do |format|
+			format.html
+			format.json { render json: @contact}
+		end
 	end
 
 	def new
     @contact = Contact.new
-    render('contacts/new.html.erb')
   end
 
   def create
-    @contact = Contact.new(:name => params[:name],
-                           :email => params[:email],
-                           :phone => params[:phone])
+    @contact = Contact.new(params[:contact])
     if @contact.save
-      render('contacts/success.html.erb')
+      flash[:notice] = "Contact created."
+      redirect_to contacts_path
     else
-      render('contacts/new.html.erb')
+      render 'new'
     end
 	end
 
 	def edit
 		@contact = Contact.find(params[:id])
-		render('contacts/edit.html.erb')
+
 	end
 
 	def update
 		@contact = Contact.find(params[:id])
-		if @contact.update(:name => params[:name],
-                       :email => params[:email],
-                       :phone => params[:phone])
-			render('contacts/success.html.erb')
+		if @contact.update(params[:contact])
+			flash[:notice] = "Contact updated."
+			redirect_to contact_path(@contact)
 		else
-			render('contacts/edit.html.erb')
+			render 'edit'
 		end
 	end
 
 	def destroy
 		@contact = contact.find(params[:id])
 		@contact.destroy
-		render('contacts/destroy.html.erb')
+
+		respond_to do |format|
+			format.html do
+				flash[:notice] = "Contact deleted"
+				redirect_to contacts_path
+			end
+			format.json { head :no_content }
+		end
 	end
 end
 
