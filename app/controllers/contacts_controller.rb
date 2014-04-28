@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
     if @contact.save
       render json: @contact, status: 201
     else
-      render json: @contact.errors, status: 422
+      render json: { errors: @contact.errors }, status: 422
 	end
 
   def show
@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
 		if @contact.update(contact_params)
 			head :no_content
 		else
-			render jason: @contact.errors, status: 422
+			render jason: { errors: @contact.errors }, status: 422
 		end
 	end
 
