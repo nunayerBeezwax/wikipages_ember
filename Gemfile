@@ -8,7 +8,6 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'turbolinks'
 
 group :development do
 	gem 'better_errors'

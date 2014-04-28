@@ -1,8 +1,4 @@
 Wikipages::Application.routes.draw do
-	root to: 'contacts#index'
-	resources :contacts do
-		resources :phones
-	end
-
-	resources :phones
+	root to: 'application#index'
+	resources :contacts, except: [:new, :edit]
 end
